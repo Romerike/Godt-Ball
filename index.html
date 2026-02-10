@@ -21,10 +21,9 @@ img { max-width: 100%; max-height: 100%; object-fit: contain; }
 <img src="bilde.jpg" alt="">
 
 <script>
-let audio = new Audio('lyd.mp3');
+let audio = new Audio('nylyd.mp3');
 audio.loop = true;
 
-// Starter lyd når brukeren klikker hvor som helst
 document.body.addEventListener('click', () => {
     audio.play();
 }, { once: true });
