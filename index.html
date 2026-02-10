@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
-<meta charset="UTF-8">
-<title>.</title>
-<style>
-html, body {
-  margin: 0; padding: 0;
-  width: 100%; height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-</style>
+  <meta charset="UTF-8">
+  <title>Autospill lyd</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
 </head>
 <body>
 
-<img src="bilde.jpg" alt="">
+  <img src="bilde.jpg" alt="Bilde">
 
-<script>
-let audio = new Audio('nylyd.mp3');
-audio.loop = true;
+  <audio id="lyd" src="lyd.mp3" preload="auto"></audio>
 
-document.body.addEventListener('click', () => {
-    audio.play();
-}, { once: true });
-</script>
+  <script>
+    const audio = document.getElementById("lyd");
+
+    function startLyd() {
+      audio.play().catch(() => {});
+      document.removeEventListener("click", startLyd);
+      document.removeEventListener("touchstart", startLyd);
+      document.removeEventListener("scroll", startLyd);
+      document.removeEventListener("keydown", startLyd);
+    }
+
+    document.addEventListener("click", startLyd);
+    document.addEventListener("touchstart", startLyd);
+    document.addEventListener("scroll", startLyd);
+    document.addEventListener("keydown", startLyd);
+  </script>
 
 </body>
 </html>
